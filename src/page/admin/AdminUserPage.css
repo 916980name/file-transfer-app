@@ -1,0 +1,30 @@
+.resultArea {
+    margin-top: 1em;
+}
+
+.myCell {
+    padding-left: 3px;
+    padding-right: 3px;
+    border-left: 1px solid;
+    border-color: #7c7b7b2d;
+}
+
+.myRow {
+    border-bottom: 1px solid;
+    border-color: #7c7b7b2d;
+    margin-bottom: 1px;
+}
+
+.searchArea {
+    margin-top: 0.6em;
+}
+  
+.dropdownItemStyle {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.dropdownBtnStyle {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

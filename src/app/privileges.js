@@ -1,0 +1,8 @@
+const PRIVILEGE_ADMIN = 'P_A_ROLE';
+const PRIVILEGE_USER = 'P_USER';
+
+export {
+    PRIVILEGE_ADMIN,
+    PRIVILEGE_USER
+};
+

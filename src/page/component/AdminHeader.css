@@ -1,0 +1,8 @@
+.headerbox {
+    border-style: solid;
+    border-width: 0px 1px 1px 1px;
+    border-color: gray;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border-radius: 5px;
+}

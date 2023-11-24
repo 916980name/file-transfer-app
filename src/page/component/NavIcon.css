@@ -1,0 +1,15 @@
+.imageicon {
+    width: 27px;
+    height: 27px;
+}
+
+.icontext {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.icontext-color {
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #FAB005;
+}

@@ -1,0 +1,56 @@
+.allArea {
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.ellipseStyle {
+    height: 10em;
+    background: radial-gradient(circle at bottom , #ffffff -20%, #FAB005 100%);
+    border-radius: 0% 0% 50% 50%;
+    box-shadow: 0 0 0 2px #ccc;
+}
+
+.userInfoText {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.userInfoRow {
+    padding-top: 1em;
+}
+
+.userOptArea {
+    margin: 1em;
+    background-color: white;
+    border-radius: 3%;
+}
+
+.userOptItem {
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+}
+
+/* .userOptItem:hover {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: rgba(250, 176, 5, 0.29);
+} */
+
+.userOptItemDivider {
+    border-top: 1px solid;
+    border-color: #ccc;
+}
+
+.userOptText {
+    font-size: 1.3em;
+}
+
+.exitBtnArea {
+    margin-top: 3em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.imageArrow {
+    width: 27px;
+    height: 27px;
+}
