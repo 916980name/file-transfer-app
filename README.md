@@ -45,16 +45,5 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### DONE
-- read config by env
-- subscription ---grants---> privilege
-- 生肖旺运-终身
- - 显示按钮，但点击弹出使用半年后赠送
-- 蜡烛财局
- - 需单独购买
- - 在工具页面里，一直显示
- - 点击则检查是否购买
-- 财局水印
-
 ### TODO
 - split build file by route for load speed.
