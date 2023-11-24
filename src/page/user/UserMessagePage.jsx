@@ -4,6 +4,7 @@ import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
 import { deleteMessage, getMessageByPage } from "../../api/userApi";
 import { dispatchAlertError } from "../../app/godispatch";
 import { makeid } from "../../app/utils";
+import ClipboardCopy from "../component/ClipboardCopy";
 import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
 import NewMessageModal from "./NewMessageModal";
@@ -77,6 +78,10 @@ export default function UserMessagePage() {
         search(pageNum)
     }
 
+    const copyMsg = (str) => {
+
+    }
+
     return (
         <UserLayout>
             <Container style={{ marginBottom: '1em', borderBottom: '1px solid' }}>
@@ -111,8 +116,8 @@ export default function UserMessagePage() {
                                                     <Col>
                                                         {item.info?.substring(0, 10)}
                                                     </Col>
-                                                    <Col>
-                                                        {moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS")}
+                                                    <Col className="d-flex justify-content-end align-items-center">
+                                                        <ClipboardCopy copyText={item.info}/>
                                                     </Col>
                                                     <Col className="d-flex justify-content-end align-items-center">
                                                         <Button variant="outline-danger" onClick={() => delMsg(item.id)}>Delete</Button>
@@ -121,7 +126,17 @@ export default function UserMessagePage() {
                                             </Container>
                                         </Accordion.Header>
                                         <Accordion.Body>
-                                            {item.info}
+                                            <Container>
+                                                <Row>
+                                                    <Col>
+                                                        Create Time: {moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS")}
+                                                    </Col>
+                                                </Row>
+                                                <br/>
+                                                <Row>
+                                                    <Col> {item.info} </Col>
+                                                </Row>
+                                            </Container>
                                         </Accordion.Body>
                                     </Accordion.Item>
 
