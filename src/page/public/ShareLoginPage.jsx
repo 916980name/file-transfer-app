@@ -8,7 +8,7 @@ import { loginSuc } from "../../app/user/userSlice";
 import { ALERTCODE_ERR } from "../component/AlertMe";
 import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
-import "./ShareLoginPage.css";
+import "./SharePage.css";
 
 export default function ShareLoginPage() {
     let { linkKey } = useParams()

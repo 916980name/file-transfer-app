@@ -8,16 +8,21 @@ import ClipboardCopy from "../component/ClipboardCopy";
 import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
 import NewMessageModal from "./NewMessageModal";
+import ShareLoginLinkModal from "./ShareLinkModal";
+import ShareMessageLinkModal from "./ShareMessageLinkModal";
 
 export default function UserMessagePage() {
     const [searchParam, setSearchParam] = useState({
         pageNum: 1,
         pageSize: 10
     });
-    const [currentSearchParam, setCurrentSearchParam] = useState({...searchParam})
+    const [currentSearchParam, setCurrentSearchParam] = useState({ ...searchParam })
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState(null)
     const newMessageModal = useRef(null)
+    const shareMessageModalRef = useRef(null)
+    const shareLoginLinkModalRef = useRef(null)
+
 
     const search = (pageNo, newSearchParam) => {
         setLoading(true)
@@ -73,13 +78,13 @@ export default function UserMessagePage() {
         let pageNoBias = 1
         if (!isGoNext) pageNoBias = -1
         let pageNum = currentSearchParam.pageNum + pageNoBias
-        if(pageNum < 1) return
+        if (pageNum < 1) return
         setCurrentSearchParam({ ...currentSearchParam, pageNum: pageNum })
         search(pageNum)
     }
 
-    const copyMsg = (str) => {
-
+    const showQRCode = (url) => {
+        shareLoginLinkModalRef.current.showQRCode(url, "QR code for Message")
     }
 
     return (
@@ -113,14 +118,17 @@ export default function UserMessagePage() {
                                         <Accordion.Header>
                                             <Container>
                                                 <Row>
-                                                    <Col>
+                                                    <Col xs={5}>
                                                         {item.info?.substring(0, 10)}
                                                     </Col>
-                                                    <Col className="d-flex justify-content-end align-items-center">
-                                                        <ClipboardCopy copyText={item.info}/>
+                                                    <Col xs={2}>
+                                                        <ClipboardCopy copyText={item.info} />
                                                     </Col>
-                                                    <Col className="d-flex justify-content-end align-items-center">
-                                                        <Button variant="outline-danger" onClick={() => delMsg(item.id)}>Delete</Button>
+                                                    <Col xs={2}>
+                                                        <Button size="sm" onClick={() => shareMessageModalRef.current.showMe(item.id)}>Share</Button>
+                                                    </Col>
+                                                    <Col xs={3}>
+                                                        <Button size="sm" variant="outline-danger" onClick={() => delMsg(item.id)}>Delete</Button>
                                                     </Col>
                                                 </Row>
                                             </Container>
@@ -132,7 +140,7 @@ export default function UserMessagePage() {
                                                         Create Time: {moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS")}
                                                     </Col>
                                                 </Row>
-                                                <br/>
+                                                <br />
                                                 <Row>
                                                     <Col> {item.info} </Col>
                                                 </Row>
@@ -147,6 +155,8 @@ export default function UserMessagePage() {
                 </>
             }
             <NewMessageModal ref={newMessageModal} />
+            <ShareMessageLinkModal ref={shareMessageModalRef} confirmCallback={showQRCode}/>
+            <ShareLoginLinkModal ref={shareLoginLinkModalRef} />
         </UserLayout>
     )
 }

@@ -30,7 +30,7 @@ export default function ClipboardCopy({ copyText }) {
     }
 
     return (
-        <Button variant="outline-success" onClick={handleCopyClick}>
+        <Button variant="outline-success" onClick={handleCopyClick} size="sm">
             {isCopied ? 'Copied!' : 'Copy'}
         </Button>
     );

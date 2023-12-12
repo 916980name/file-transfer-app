@@ -8,7 +8,15 @@ const CheckShareLinkRequest = (params) => {
   })
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 
+const CheckMessageShareLinkRequest = (params) => {
+  return request({
+    method: "GET",
+    data: params,
+    url: "/ms/" + params
+  })
+}
+
 export {
-  CheckShareLinkRequest
+  CheckMessageShareLinkRequest, CheckShareLinkRequest
 };
 

@@ -10,7 +10,7 @@ import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
 import './HomeUserPage.css';
 import PasswordModal from "./PasswordModal";
-import ShareLoginLinkModal from "./ShareLoginLinkModal";
+import ShareLinkModal from "./ShareLinkModal";
 
 export default function HomeUser() {
     document.title = 'user home'
@@ -47,7 +47,7 @@ export default function HomeUser() {
         shareLoginLink()
         .then(res => {
             let url = res.data;
-            shareLoginLinkModalRef.current.showQRCode(url)
+            shareLoginLinkModalRef.current.showQRCode(url, "QR code for Login")
         }).catch(err => {
             dispatch(sendAlert({ code: ALERTCODE_ERR, msg: "generate login link failed"}))
         }).finally(() => {
@@ -119,7 +119,7 @@ export default function HomeUser() {
                 </Container>
             </div>
             <PasswordModal ref={passwordModalRef} />
-            <ShareLoginLinkModal ref={shareLoginLinkModalRef} />
+            <ShareLinkModal ref={shareLoginLinkModalRef} />
         </UserLayout>
     )
 }

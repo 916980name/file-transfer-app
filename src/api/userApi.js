@@ -60,8 +60,16 @@ const shareLoginLink = () => {
   })
 }
 
+const shareMessageLink = (mId, params) => {
+  return request({
+    method: 'POST',
+    url: '/msg/share/' + mId,
+    data: params
+  })
+}
+
 export {
   LoginRequest, LogoutRequest, deleteMessage, getMessageByPage,
-  getUser, putMessage, shareLoginLink, updatePassword
+  getUser, putMessage, shareLoginLink, shareMessageLink, updatePassword
 };
 

@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 
-const ShareLoginLinkModal = React.forwardRef((props, ref) => {
+const ShareLinkModal = React.forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
         showQRCode,
         closeMe
@@ -48,9 +48,9 @@ const ShareLoginLinkModal = React.forwardRef((props, ref) => {
         setPrintModalShow(false);
     }
 
-    const showQRCode = (url) => {
+    const showQRCode = (url, title) => {
         setQrCodeSize(qrCodeShowSize);
-        setTitleString("QR Code for login")
+        setTitleString(title ? title : "QR Code")
         setPrintUrl(url);
         showMe(() => setTimeout(() => {
             qrCodeCanvasColRef.current.style.display = "";
@@ -64,17 +64,17 @@ const ShareLoginLinkModal = React.forwardRef((props, ref) => {
             </Modal.Header>
             <Modal.Body>
                 <Row className="justify-content-md-center">
-                    <Col md="auto">
-                        {printUrl}
+                    <Col>
+                        <a href={printUrl}>{printUrl}</a>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
-                    <Col id="qrCodeCanvasColId" md="auto" style={{ display: 'none' }}>
+                <Row >
+                    <Col id="qrCodeCanvasColId" style={{ display: 'none' }} className='d-flex justify-content-center align-items-center'>
                         <QRCodeCanvas id="qrPrintId" level="L" value={printUrl} size={qrCodeSize} />
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col id="templateCanvasColId" md="auto" style={{ display: 'none' }}>
+                    <Col id="templateCanvasColId" style={{ display: 'none' }}>
                         <canvas ref={templateCanvasRef}></canvas>
                     </Col>
                 </Row>
@@ -83,4 +83,4 @@ const ShareLoginLinkModal = React.forwardRef((props, ref) => {
     );
 });
 
-export default ShareLoginLinkModal;
+export default ShareLinkModal;
