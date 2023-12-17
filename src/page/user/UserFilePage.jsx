@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
 import { deleteMessage, downloadFile, getFileByPage } from "../../api/userApi";
 import { dispatchAlertError } from "../../app/godispatch";
-import { makeid } from "../../app/utils";
+import { formatBytes, makeid } from "../../app/utils";
 import ClipboardCopy from "../component/ClipboardCopy";
 import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
-import NewMessageModal from "./NewMessageModal";
+import NewFileModal from "./NewFileModal";
 import ShareLoginLinkModal from "./ShareLinkModal";
 import ShareMessageLinkModal from "./ShareMessageLinkModal";
 
@@ -20,7 +20,7 @@ export default function UserFilePage() {
     const [currentSearchParam, setCurrentSearchParam] = useState({ ...searchParam })
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState(null)
-    const newMessageModal = useRef(null)
+    const newFileModal = useRef(null)
     const shareMessageModalRef = useRef(null)
     const shareLoginLinkModalRef = useRef(null)
 
@@ -128,7 +128,7 @@ export default function UserFilePage() {
                         <Button variant="primary" onClick={() => nextPage(true)}>&nbsp;&gt;&gt;&nbsp;</Button>
                     </Col>
                     <Col className="d-flex justify-content-end align-items-center">
-                        <Button variant="outline-primary" onClick={() => newMessageModal.current.showMe()}>new message</Button>
+                        <Button variant="outline-primary" onClick={() => newFileModal.current.showMe()}>Upload</Button>
                     </Col>
                 </Row>
             </Container>
@@ -144,16 +144,16 @@ export default function UserFilePage() {
                                             <Container>
                                                 <Row>
                                                     <Col xs={5}>
-                                                        {item.name?.substring(0, 10)}
+                                                        {item.name?.substring(0, 10)} ({formatBytes(item.size)})
                                                     </Col>
                                                     <Col xs={2}>
                                                         <ClipboardCopy copyText={item.name} />
                                                     </Col>
                                                     <Col xs={2}>
-                                                        <Button size="sm" onClick={() => shareMessageModalRef.current.showMe(item.id)}>Share</Button>
+                                                        <Button disabled size="sm" onClick={() => shareMessageModalRef.current.showMe(item.id)}>Share</Button>
                                                     </Col>
                                                     <Col xs={3}>
-                                                        <Button size="sm" variant="outline-danger" onClick={() => delMsg(item.id)}>Delete</Button>
+                                                        <Button disabled size="sm" variant="outline-danger" onClick={() => delMsg(item.id)}>Delete</Button>
                                                     </Col>
                                                 </Row>
                                             </Container>
@@ -187,7 +187,7 @@ export default function UserFilePage() {
                     </Accordion>
                 </>
             }
-            <NewMessageModal ref={newMessageModal} />
+            <NewFileModal ref={newFileModal} />
             <ShareMessageLinkModal ref={shareMessageModalRef} confirmCallback={showQRCode} />
             <ShareLoginLinkModal ref={shareLoginLinkModalRef} />
         </UserLayout>

@@ -84,8 +84,17 @@ const downloadFile = (fId) => {
   })
 }
 
+const uploadFile = (formData) => {
+  return request({
+    method: 'POST',
+    url: '/file',
+    data: formData
+  })
+}
+
 export {
   LoginRequest, LogoutRequest, deleteMessage, downloadFile, getFileByPage, getMessageByPage,
-  getUser, putMessage, shareLoginLink, shareMessageLink, updatePassword
+  getUser, putMessage, shareLoginLink, shareMessageLink, updatePassword,
+  uploadFile
 };
 
