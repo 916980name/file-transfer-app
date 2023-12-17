@@ -19,7 +19,6 @@ export default function NoAuthPage() {
                   <Button variant="outline-success">
                     <a href="/login"> Login Again</a>
                   </Button>
-                  后使用
                 </h4>
               </Col>
             </Row>
