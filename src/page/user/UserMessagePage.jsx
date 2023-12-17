@@ -12,6 +12,7 @@ import ShareLoginLinkModal from "./ShareLinkModal";
 import ShareMessageLinkModal from "./ShareMessageLinkModal";
 
 export default function UserMessagePage() {
+    document.title = "user messages"
     const [searchParam, setSearchParam] = useState({
         pageNum: 1,
         pageSize: 10

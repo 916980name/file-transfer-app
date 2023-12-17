@@ -68,8 +68,24 @@ const shareMessageLink = (mId, params) => {
   })
 }
 
+const getFileByPage = (params) => {
+  return request({
+    method: 'POST',
+    data: params,
+    url: '/file/query'
+  })
+}
+
+const downloadFile = (fId) => {
+  return request({
+    method: 'GET',
+    url: '/file/' + fId,
+    responseType: 'blob'
+  })
+}
+
 export {
-  LoginRequest, LogoutRequest, deleteMessage, getMessageByPage,
+  LoginRequest, LogoutRequest, deleteMessage, downloadFile, getFileByPage, getMessageByPage,
   getUser, putMessage, shareLoginLink, shareMessageLink, updatePassword
 };
 

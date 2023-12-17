@@ -22,6 +22,9 @@ function request(context) {
       config.headers['Authorization'] = `${token}`;
     }
     config.headers['TX-TZ'] = moment().format();
+    if(context.responseType !== undefined) {
+      config.responseType = context.responseType
+    }
     return config;
   });
 
