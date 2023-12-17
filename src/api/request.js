@@ -21,7 +21,7 @@ function request(context) {
     if (token) {
       config.headers['Authorization'] = `${token}`;
     }
-    config.headers['REQUEST-TZ'] = moment().format();
+    config.headers['TX-TZ'] = moment().format();
     return config;
   });
 
