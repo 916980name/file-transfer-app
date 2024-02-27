@@ -54,6 +54,7 @@ export default function LoginPage() {
             const token = res.headers['authorization'];
             let data = res.data;
             data.token = token;
+            data.privileges = data.privileges.split(',')
             dispatch(loginSuc(data))
             if (data.privileges.includes(PRIVILEGE_ADMIN)) {
                 navigate("/admin")
