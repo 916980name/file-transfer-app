@@ -16,6 +16,10 @@ export const userSlice = createSlice({
       state.isLogin = true;
       state.info = action.payload;
     },
+    loginRefresh: (state, action) => {
+      state.info.token = action.payload.token;
+      state.info.refreshToken = action.payload.refreshToken;
+    },
     logout: (state) => {
       state.isLogin = false;
       state.info = {
@@ -25,12 +29,13 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loginSuc, logout } = userSlice.actions;
+export const { loginSuc, logout, loginRefresh } = userSlice.actions;
 
 export const selectIsLogin = (state) => state.user.isLogin;
 export const selectUserName = (state) => state.user.info.username;
 export const selectUserPrivileges = (state) => state.user.info.privileges;
 export const selectUserToken = (state) => state.user.info.token;
+export const selectRefreshToken = (state) => state.user.info.refreshToken;
 export const selectWaterMark = (state) => state.user.info.watermark;
 
 export default userSlice.reducer;

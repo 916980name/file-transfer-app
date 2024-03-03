@@ -23,6 +23,9 @@ export default function HomeUser() {
 
     const goLogout = () => {
         LogoutRequest()
+            .catch(e => {
+                console.log(e)
+            })
             .finally(() => {
                 dispatch(logout());
                 navigate("/")

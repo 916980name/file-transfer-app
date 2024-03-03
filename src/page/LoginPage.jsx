@@ -52,8 +52,10 @@ export default function LoginPage() {
             }
         ).then(res => {
             const token = res.headers['authorization'];
+            const refreshToken = res.headers['refresh'];
             let data = res.data;
             data.token = token;
+            data.refreshToken = refreshToken
             data.privileges = data.privileges.split(',')
             dispatch(loginSuc(data))
             if (data.privileges.includes(PRIVILEGE_ADMIN)) {
