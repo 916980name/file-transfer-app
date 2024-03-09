@@ -36,7 +36,9 @@ function request(context) {
       let data = ''
       try {
         if (err.response.status === 401) {
-          if (context.noAuthAgain === undefined || !context.noAuthAgain) {
+          const { refreshToken } = store.getState().user.info
+          if ((context.noAuthAgain === undefined || !context.noAuthAgain)
+            && (refreshToken !== undefined && refreshToken !== "")) {
             return refreshTokenRequest(context)
           } else {
             store.dispatch(logout())

@@ -44,7 +44,7 @@ export default function AdminUserPage() {
                 }
             })
             .catch(err => {
-                dispatchAlertError(err.message)
+                dispatchAlertError(err)
             })
             .finally(() => {
                 setLoading(false)
@@ -70,7 +70,7 @@ export default function AdminUserPage() {
                     dispatchAlertSuc('更新成功')
                     search()
                 })
-                .catch(err => { dispatchAlertError(err.message) })
+                .catch(err => { dispatchAlertError(err) })
                 .finally(() => setLoading(false))
         }
     }

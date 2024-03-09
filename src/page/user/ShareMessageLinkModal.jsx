@@ -48,7 +48,7 @@ const ShareMessageLinkModal = React.forwardRef((props, ref) => {
                 }, 1000)
             })
             .catch(err => {
-                dispatchAlertError('error: ' + err.message)
+                dispatchAlertError(err)
                 setLoading(false)
             })
     }

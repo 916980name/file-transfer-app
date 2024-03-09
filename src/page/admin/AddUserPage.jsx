@@ -56,7 +56,7 @@ const AddUserPage = React.forwardRef((props, ref) => {
                 setInitPassword(res.data.initPassword)
             })
             .catch(err => {
-                dispatchAlertError(err.message)
+                dispatchAlertError(err)
             })
             .finally(() => {
                 setLoading(false)

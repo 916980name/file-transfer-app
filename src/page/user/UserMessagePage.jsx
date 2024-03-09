@@ -44,7 +44,7 @@ export default function UserMessagePage() {
                 }
             })
             .catch(err => {
-                dispatchAlertError(err.message)
+                dispatchAlertError(err)
             })
             .finally(() => {
                 setLoading(false)
@@ -67,7 +67,7 @@ export default function UserMessagePage() {
             deleteMessage(msgId)
                 .then(res => { clickSearch() })
                 .catch(err => {
-                    dispatchAlertError(err.message)
+                    dispatchAlertError(err)
                 })
                 .finally(() => {
                     setLoading(false)
