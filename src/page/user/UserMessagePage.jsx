@@ -120,7 +120,7 @@ export default function UserMessagePage() {
                                             <Container>
                                                 <Row>
                                                     <Col xs={5}>
-                                                        {item.info?.substring(0, 10)}
+                                                        {item.info?.substring(0, 20)}
                                                     </Col>
                                                     <Col xs={2}>
                                                         <ClipboardCopy copyText={item.info} />
