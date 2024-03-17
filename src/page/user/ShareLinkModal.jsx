@@ -49,6 +49,7 @@ const ShareLinkModal = React.forwardRef((props, ref) => {
     }
 
     const showQRCode = (url, title) => {
+        url = window.location.origin + url;
         setQrCodeSize(qrCodeShowSize);
         setTitleString(title ? title : "QR Code")
         setPrintUrl(url);
