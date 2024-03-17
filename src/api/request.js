@@ -33,7 +33,7 @@ function request(context) {
   instance.interceptors.response.use(
     res => res,
     err => {
-      let data = ''
+      let data = 'Unknown Error'
       try {
         if (err.response.status === 401) {
           const { refreshToken } = store.getState().user.info
@@ -79,9 +79,10 @@ function refreshTokenRequest(context) {
       return request(context)
     })
     .catch(err => {
-      let data = ''
+      let data = 'Unknown Error'
       try {
-        if (err.response.status === 401) {
+        if (err.response.status === 401
+            || err.response.status === 404) {
           store.dispatch(logout())
           dispatchAlertError('Please Login Again')
         }

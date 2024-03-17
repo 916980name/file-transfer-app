@@ -18,7 +18,10 @@ export const userSlice = createSlice({
     },
     loginRefresh: (state, action) => {
       state.info.token = action.payload.token;
-      state.info.refreshToken = action.payload.refreshToken;
+      let rtoken = action.payload.refreshToken
+      if(rtoken !== undefined && rtoken !== "") {
+        state.info.refreshToken = rtoken;
+      }
     },
     logout: (state) => {
       state.isLogin = false;
