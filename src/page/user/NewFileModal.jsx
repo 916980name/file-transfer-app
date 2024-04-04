@@ -9,6 +9,7 @@ const NewFileModal = React.forwardRef((props, ref) => {
         closeMe
     }))
 
+    const { doSearch } = props
     const [modalShow, setModalShow] = useState(false);
     const [loading, setLoading] = useState(false)
 
@@ -24,7 +25,7 @@ const NewFileModal = React.forwardRef((props, ref) => {
         setLoading(true)
         const form = new FormData()
         form.append('file', document.querySelector('#formFile').files[0])
-        
+
         /*
         axios.postForm('/api/file', {
             'file': document.querySelector('#formFile').files[0]
@@ -38,6 +39,7 @@ const NewFileModal = React.forwardRef((props, ref) => {
                 dispatchAlertSuc('send success')
                 setTimeout(() => {
                     setLoading(false)
+                    doSearch()
                     closeMe()
                 }, 1500)
             })

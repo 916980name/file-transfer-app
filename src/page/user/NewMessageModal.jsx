@@ -9,6 +9,7 @@ const NewMessageModal = React.forwardRef((props, ref) => {
         closeMe
     }))
 
+    const { doSearch } = props
     const initRequest = {
         info: null,
     }
@@ -45,6 +46,7 @@ const NewMessageModal = React.forwardRef((props, ref) => {
                 dispatchAlertSuc('send success')
                 setTimeout(() => {
                     setLoading(false)
+                    doSearch()
                     closeMe()
                 }, 1500)
             })

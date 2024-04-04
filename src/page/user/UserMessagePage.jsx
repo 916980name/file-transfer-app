@@ -155,7 +155,7 @@ export default function UserMessagePage() {
                     </Accordion>
                 </>
             }
-            <NewMessageModal ref={newMessageModal} />
+            <NewMessageModal ref={newMessageModal} doSearch={clickSearch}/>
             <ShareMessageLinkModal ref={shareMessageModalRef} confirmCallback={showQRCode}/>
             <ShareLoginLinkModal ref={shareLoginLinkModalRef} />
         </UserLayout>

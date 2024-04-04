@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
-import { deleteMessage, downloadFile, getFileByPage } from "../../api/userApi";
+import { deleteFile, downloadFile, getFileByPage } from "../../api/userApi";
 import { dispatchAlertError } from "../../app/godispatch";
 import { formatBytes, makeid } from "../../app/utils";
 import ClipboardCopy from "../component/ClipboardCopy";
@@ -61,10 +61,10 @@ export default function UserFilePage() {
         search(0, searchParam)
     }
 
-    const delMsg = (msgId) => {
+    const delFile = (fId) => {
         if (window.confirm("Confirm delete ! ")) {
             setLoading(true)
-            deleteMessage(msgId)
+            deleteFile(fId)
                 .then(res => { clickSearch() })
                 .catch(err => {
                     dispatchAlertError(err)
@@ -153,7 +153,7 @@ export default function UserFilePage() {
                                                         <Button size="sm" onClick={() => shareFileModalRef.current.showMe(item.id)}>Share</Button>
                                                     </Col>
                                                     <Col xs={3}>
-                                                        <Button disabled size="sm" variant="outline-danger" onClick={() => delMsg(item.id)}>Delete</Button>
+                                                        <Button size="sm" variant="outline-danger" onClick={() => delFile(item.id)}>Delete</Button>
                                                     </Col>
                                                 </Row>
                                             </Container>
@@ -187,7 +187,7 @@ export default function UserFilePage() {
                     </Accordion>
                 </>
             }
-            <NewFileModal ref={newFileModal} />
+            <NewFileModal ref={newFileModal} doSearch={clickSearch}/>
             <ShareFileLinkModal ref={shareFileModalRef} confirmCallback={showQRCode} />
             <ShareLinkModal ref={shareLinkModalRef} />
         </UserLayout>

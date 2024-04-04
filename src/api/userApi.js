@@ -100,8 +100,15 @@ const uploadFile = (formData) => {
   })
 }
 
+const deleteFile = (id) => {
+  return request({
+    method: 'DELETE',
+    url: '/file/' + id
+  })
+}
+
 export {
-  LoginRequest, LogoutRequest, deleteMessage, downloadFile, getFileByPage, getMessageByPage,
+  LoginRequest, LogoutRequest, deleteFile, deleteMessage, downloadFile, getFileByPage, getMessageByPage,
   getUser, putMessage, shareFileLink, shareLoginLink, shareMessageLink, updatePassword,
   uploadFile
 };
