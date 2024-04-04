@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 
-export default function ClipboardCopy({ copyText }) {
+export default function ClipboardCopy({ copyText, size }) {
     const [isCopied, setIsCopied] = useState(false);
 
     // This is the function we wrote earlier
@@ -30,7 +30,7 @@ export default function ClipboardCopy({ copyText }) {
     }
 
     return (
-        <Button variant="outline-success" onClick={handleCopyClick} size="sm">
+        <Button variant="outline-success" onClick={handleCopyClick} size={size ? size : 'sm'}>
             {isCopied ? 'Copied!' : 'Copy'}
         </Button>
     );

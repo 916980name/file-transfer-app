@@ -9,7 +9,7 @@ import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
 import NewFileModal from "./NewFileModal";
 import ShareFileLinkModal from "./ShareFileLinkModal";
-import ShareLoginLinkModal from "./ShareLinkModal";
+import ShareLinkModal from "./ShareLinkModal";
 
 export default function UserFilePage() {
     document.title = "user files"
@@ -22,7 +22,7 @@ export default function UserFilePage() {
     const [data, setData] = useState(null)
     const newFileModal = useRef(null)
     const shareFileModalRef = useRef(null)
-    const shareLoginLinkModalRef = useRef(null)
+    const shareLinkModalRef = useRef(null)
 
 
     const search = (pageNo, newSearchParam) => {
@@ -85,7 +85,7 @@ export default function UserFilePage() {
     }
 
     const showQRCode = (url) => {
-        shareLoginLinkModalRef.current.showQRCode(url, "QR code for File")
+        shareLinkModalRef.current.showQRCode(url, "QR code for File")
     }
 
     const download = (fId) => {
@@ -189,7 +189,7 @@ export default function UserFilePage() {
             }
             <NewFileModal ref={newFileModal} />
             <ShareFileLinkModal ref={shareFileModalRef} confirmCallback={showQRCode} />
-            <ShareLoginLinkModal ref={shareLoginLinkModalRef} />
+            <ShareLinkModal ref={shareLinkModalRef} />
         </UserLayout>
     )
 }

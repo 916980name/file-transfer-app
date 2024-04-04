@@ -3,6 +3,8 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
+import ClipboardCopy from '../component/ClipboardCopy';
+import './ShareLinkModal.css';
 
 const ShareLinkModal = React.forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
@@ -66,7 +68,7 @@ const ShareLinkModal = React.forwardRef((props, ref) => {
             <Modal.Body>
                 <Row className="justify-content-md-center">
                     <Col>
-                        <span><a href={printUrl}>{printUrl}</a></span>
+                        <a className='shareLink' href={printUrl}>{printUrl}</a>
                     </Col>
                 </Row>
                 <Row >
@@ -77,6 +79,11 @@ const ShareLinkModal = React.forwardRef((props, ref) => {
                 <Row className="justify-content-md-center">
                     <Col id="templateCanvasColId" style={{ display: 'none' }}>
                         <canvas ref={templateCanvasRef}></canvas>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className='d-flex justify-content-center align-items-center'>
+                        <ClipboardCopy copyText={printUrl} size={'md'}/>
                     </Col>
                 </Row>
             </Modal.Body>

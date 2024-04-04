@@ -24,7 +24,11 @@ export default function ShareFilePage() {
             .then(response => {
                 dispatch(sendAlert({ code: ALERTCODE_SUC, msg: "Download begin" }))
                 doDownload(response)
-            }).finally(() => {
+            })
+            .catch(err => {
+                dispatch(sendAlert({ code: ALERTCODE_ERR, msg: "Download Failed"}))
+            })
+            .finally(() => {
                 setLoading(false)
             })
     }
