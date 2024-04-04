@@ -16,7 +16,14 @@ const CheckMessageShareLinkRequest = (params) => {
   })
 }
 
-export {
-  CheckMessageShareLinkRequest, CheckShareLinkRequest
-};
+const CheckFileShareLinkRequest = (params) => {
+  return request({
+    method: "GET",
+    data: params,
+    url: "/fs/" + params,
+    responseType: 'blob'
+  })
+}
+
+export { CheckFileShareLinkRequest, CheckMessageShareLinkRequest, CheckShareLinkRequest };
 

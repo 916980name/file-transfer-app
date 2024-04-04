@@ -8,8 +8,8 @@ import ClipboardCopy from "../component/ClipboardCopy";
 import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
 import NewFileModal from "./NewFileModal";
+import ShareFileLinkModal from "./ShareFileLinkModal";
 import ShareLoginLinkModal from "./ShareLinkModal";
-import ShareMessageLinkModal from "./ShareMessageLinkModal";
 
 export default function UserFilePage() {
     document.title = "user files"
@@ -21,7 +21,7 @@ export default function UserFilePage() {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState(null)
     const newFileModal = useRef(null)
-    const shareMessageModalRef = useRef(null)
+    const shareFileModalRef = useRef(null)
     const shareLoginLinkModalRef = useRef(null)
 
 
@@ -150,7 +150,7 @@ export default function UserFilePage() {
                                                         <ClipboardCopy copyText={item.name} />
                                                     </Col>
                                                     <Col xs={2}>
-                                                        <Button disabled size="sm" onClick={() => shareMessageModalRef.current.showMe(item.id)}>Share</Button>
+                                                        <Button size="sm" onClick={() => shareFileModalRef.current.showMe(item.id)}>Share</Button>
                                                     </Col>
                                                     <Col xs={3}>
                                                         <Button disabled size="sm" variant="outline-danger" onClick={() => delMsg(item.id)}>Delete</Button>
@@ -188,7 +188,7 @@ export default function UserFilePage() {
                 </>
             }
             <NewFileModal ref={newFileModal} />
-            <ShareMessageLinkModal ref={shareMessageModalRef} confirmCallback={showQRCode} />
+            <ShareFileLinkModal ref={shareFileModalRef} confirmCallback={showQRCode} />
             <ShareLoginLinkModal ref={shareLoginLinkModalRef} />
         </UserLayout>
     )

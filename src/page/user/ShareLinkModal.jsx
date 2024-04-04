@@ -66,7 +66,7 @@ const ShareLinkModal = React.forwardRef((props, ref) => {
             <Modal.Body>
                 <Row className="justify-content-md-center">
                     <Col>
-                        <a href={printUrl}>{printUrl}</a>
+                        <span><a href={printUrl}>{printUrl}</a></span>
                     </Col>
                 </Row>
                 <Row >

@@ -22,6 +22,7 @@ const HomeAdminPage = lazy(() => import('../page/admin/HomeAdminPage'));
 const SystemSettingPage = lazy(() => import('../page/admin/SystemSettingPage'));
 const ShareLoginPage = lazy(() => import('../page/public/ShareLoginPage'));
 const ShareMessagePage = lazy(() => import('../page/public/ShareMessagePage'));
+const ShareFilePage = lazy(() => import('../page/public/ShareFilePage'));
 
 function renderRoutes(routes) {
     return routes.map((route) => (
@@ -72,6 +73,17 @@ export const routerList = [
                 path: ':linkKey',
                 name: 'share message link',
                 element: <ShareMessagePage/>
+            }
+        ]
+    },
+    {
+        path: '/fs',
+        errorElement: <ErrorPage />,
+        child: [
+            {
+                path: ':linkKey',
+                name: 'share message link',
+                element: <ShareFilePage/>
             }
         ]
     },

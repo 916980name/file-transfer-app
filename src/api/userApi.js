@@ -68,6 +68,14 @@ const shareMessageLink = (mId, params) => {
   })
 }
 
+const shareFileLink = (mId, params) => {
+  return request({
+    method: 'POST',
+    url: '/file/share/' + mId,
+    data: params
+  })
+}
+
 const getFileByPage = (params) => {
   return request({
     method: 'POST',
@@ -94,7 +102,7 @@ const uploadFile = (formData) => {
 
 export {
   LoginRequest, LogoutRequest, deleteMessage, downloadFile, getFileByPage, getMessageByPage,
-  getUser, putMessage, shareLoginLink, shareMessageLink, updatePassword,
+  getUser, putMessage, shareFileLink, shareLoginLink, shareMessageLink, updatePassword,
   uploadFile
 };
 

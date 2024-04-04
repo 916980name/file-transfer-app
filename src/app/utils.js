@@ -20,5 +20,23 @@ function formatBytes(bytes, decimals = 2) {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 
-export { formatBytes, makeid };
+function doDownload(response) {
+    let filename = response.headers['content-disposition'].split('filename=')[1];
+    filename = decodeURI(filename)
+    // create file link in browser's memory
+    const href = URL.createObjectURL(response.data);
+
+    // create "a" HTML element with href to file & click
+    const link = document.createElement('a');
+    link.href = href;
+    link.setAttribute('download', filename); //or any other extension
+    document.body.appendChild(link);
+    link.click();
+
+    // clean up "a" element & remove ObjectURL
+    document.body.removeChild(link);
+    URL.revokeObjectURL(href);
+}
+
+export { doDownload, formatBytes, makeid };
 
