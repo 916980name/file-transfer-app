@@ -10,6 +10,7 @@ import UserLayout from "../component/UserLayout";
 import NewMessageModal from "./NewMessageModal";
 import ShareLoginLinkModal from "./ShareLinkModal";
 import ShareMessageLinkModal from "./ShareMessageLinkModal";
+import './UserMessagePage.css';
 
 export default function UserMessagePage() {
     document.title = "user messages"
@@ -143,7 +144,11 @@ export default function UserMessagePage() {
                                                 </Row>
                                                 <br />
                                                 <Row>
-                                                    <Col> {item.info} </Col>
+                                                    <Col>
+                                                        <pre className="msgDetail">
+                                                            {item.info}
+                                                        </pre>
+                                                    </Col>
                                                 </Row>
                                             </Container>
                                         </Accordion.Body>
@@ -155,8 +160,8 @@ export default function UserMessagePage() {
                     </Accordion>
                 </>
             }
-            <NewMessageModal ref={newMessageModal} doSearch={clickSearch}/>
-            <ShareMessageLinkModal ref={shareMessageModalRef} confirmCallback={showQRCode}/>
+            <NewMessageModal ref={newMessageModal} doSearch={clickSearch} />
+            <ShareMessageLinkModal ref={shareMessageModalRef} confirmCallback={showQRCode} />
             <ShareLoginLinkModal ref={shareLoginLinkModalRef} />
         </UserLayout>
     )
