@@ -92,11 +92,13 @@ const downloadFile = (fId) => {
   })
 }
 
-const uploadFile = (formData) => {
+const uploadFile = (formData, onUploadProgress, abortController) => {
   return request({
     method: 'POST',
     url: '/file',
-    data: formData
+    data: formData,
+    onUploadProgress: onUploadProgress,
+    signal: abortController.signal,
   })
 }
 
