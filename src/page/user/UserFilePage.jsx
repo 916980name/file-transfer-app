@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
-import { deleteFile, downloadFile, getFileByPage } from "../../api/userApi";
+import { deleteFile, getFileByPage } from "../../api/userApi";
 import { dispatchAlertError } from "../../app/godispatch";
 import { formatBytes, makeid } from "../../app/utils";
 import ClipboardCopy from "../component/ClipboardCopy";
@@ -88,30 +88,6 @@ export default function UserFilePage() {
         shareLinkModalRef.current.showQRCode(url, "QR code for File")
     }
 
-    const download = (fId) => {
-        downloadFile(fId)
-            .then((response) => {
-                // create file link in browser's memory
-                const href = URL.createObjectURL(response.data);
-
-                // create "a" HTML element with href to file & click
-                const link = document.createElement('a');
-                link.href = href;
-                let filename = response.headers['content-disposition'].split('filename=')[1];
-                filename = decodeURI(filename)
-                link.setAttribute('download', filename); //or any other extension
-                document.body.appendChild(link);
-                link.click();
-
-                // clean up "a" element & remove ObjectURL
-                document.body.removeChild(link);
-                URL.revokeObjectURL(href);
-            })
-            .catch(err => {
-                dispatchAlertError(err)
-            })
-    }
-
     return (
         <UserLayout>
             <Container style={{ marginBottom: '1em', borderBottom: '1px solid' }}>
@@ -159,25 +135,7 @@ export default function UserFilePage() {
                                             </Container>
                                         </Accordion.Header>
                                         <Accordion.Body>
-                                            <Container>
-                                                <Row>
-                                                    <Col>
-                                                        Create Time: {moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS")}
-                                                    </Col>
-                                                </Row>
-                                                <br />
-                                                <Row>
-                                                    <Col> {item.name} </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col> {item.size} </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col>
-                                                        <Button size="sm" onClick={() => download(item.id)}>Download</Button>
-                                                    </Col>
-                                                </Row>
-                                            </Container>
+                                            <FileContent item={item} />
                                         </Accordion.Body>
                                     </Accordion.Item>
 
@@ -187,9 +145,38 @@ export default function UserFilePage() {
                     </Accordion>
                 </>
             }
-            <NewFileModal ref={newFileModal} doSearch={clickSearch}/>
+            <NewFileModal ref={newFileModal} doSearch={clickSearch} />
             <ShareFileLinkModal ref={shareFileModalRef} confirmCallback={showQRCode} />
             <ShareLinkModal ref={shareLinkModalRef} />
         </UserLayout>
+    )
+}
+
+const FileContent = (props) => {
+    const { item } = props;
+
+    return (
+        <Container>
+            <Row>
+                <Col>
+                    Create Time: {moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS")}
+                </Col>
+            </Row>
+            <br />
+            <Row>
+                <Col> {item.name} </Col>
+            </Row>
+            <Row>
+                <Col> {item.size} </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <a href={process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_PATH
+                        + "/file/" + item.id} download={item.name}>
+                        <Button size="sm">Download</Button>
+                    </a>
+                </Col>
+            </Row>
+        </Container>
     )
 }

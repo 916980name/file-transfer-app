@@ -19,10 +19,6 @@ function request(context) {
   });
 
   instance.interceptors.request.use(config => {
-    const { token } = store.getState().user.info
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
     config.headers['TX-TZ'] = moment().format();
     if (context.responseType !== undefined) {
       config.responseType = context.responseType
