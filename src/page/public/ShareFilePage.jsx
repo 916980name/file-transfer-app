@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { CheckFileShareLinkRequest } from "../../api/publicApi";
 import { sendAlert } from "../../app/alertSlice";
-import { doDownload } from "../../app/utils";
 import { ALERTCODE_ERR, ALERTCODE_SUC } from "../component/AlertMe";
 import Loading from "../component/Loading";
 import UserLayout from "../component/UserLayout";
@@ -14,23 +12,22 @@ export default function ShareFilePage() {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
-    const goRead = () => {
+    const goRead = (event) => {
         setLoading(true)
         if (linkKey === undefined || linkKey === "") {
             dispatch(sendAlert({ code: ALERTCODE_ERR, msg: "parameter error" }))
+            setLoading(false)
+            event.preventDefault();
+            return;
         }
 
-        CheckFileShareLinkRequest(linkKey)
-            .then(response => {
-                dispatch(sendAlert({ code: ALERTCODE_SUC, msg: "Download begin" }))
-                doDownload(response)
-            })
-            .catch(err => {
-                dispatch(sendAlert({ code: ALERTCODE_ERR, msg: "Download Failed"}))
-            })
-            .finally(() => {
-                setLoading(false)
-            })
+        const link = document.createElement('a');
+        link.href = process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_PATH + "/fs/" + linkKey;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        dispatch(sendAlert({ code: ALERTCODE_SUC, msg: "Download begin" }))
+        setLoading(false)
     }
 
     return (
