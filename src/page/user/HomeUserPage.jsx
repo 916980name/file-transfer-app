@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LogoutRequest, shareLoginLink } from "../../api/userApi";
+import { LogoutRequest, getUser, shareLoginLink } from "../../api/userApi";
 import { sendAlert } from "../../app/alertSlice";
+import { dispatchAlertError } from "../../app/godispatch";
 import { logout, selectUserName } from "../../app/user/userSlice";
 import { ALERTCODE_ERR } from "../component/AlertMe";
 import Loading from "../component/Loading";
@@ -20,6 +21,16 @@ export default function HomeUser() {
     const dispatch = useDispatch();
     const passwordModalRef = useRef(null);
     const shareLoginLinkModalRef = useRef(null);
+
+    useEffect(() => {
+        getUser()
+            .then((res) => {
+                console.log('user logged in')
+            })
+            .catch(e => {
+                dispatchAlertError('获取用户信息失败')
+            })
+    }, [])
 
     const goLogout = () => {
         LogoutRequest()
