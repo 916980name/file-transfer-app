@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { deleteFile, getFileByPage } from "../../api/userApi";
 import { dispatchAlertError } from "../../app/godispatch";
 import { formatBytes, makeid } from "../../app/utils";
@@ -10,9 +11,11 @@ import UserLayout from "../component/UserLayout";
 import NewFileModal from "./NewFileModal";
 import ShareFileLinkModal from "./ShareFileLinkModal";
 import ShareLinkModal from "./ShareLinkModal";
+import "./UserFilePage.css";
 
 export default function UserFilePage() {
     document.title = "user files"
+    const navigate = useNavigate();
     const [searchParam, setSearchParam] = useState({
         pageNum: 1,
         pageSize: 10
@@ -91,20 +94,26 @@ export default function UserFilePage() {
     return (
         <UserLayout>
             <Container style={{ marginBottom: '1em', borderBottom: '1px solid' }}>
-                <Row>
-                    <Col xs={4} >
-                        Page No. {currentSearchParam.pageNum}
+                <Row className="no-gutters">
+                    <Col xs={2} className="p-0 d-flex justify-content-end align-items-center">
+                        <Button size="sm" onClick={() => navigate("/user")}>Home</Button>
                     </Col>
                     <Col xs={2} >
+                        Page No.{currentSearchParam.pageNum}
+                    </Col>
+                    <Col xs={1} className="p-0" >
                         {currentSearchParam.pageNum > 1 &&
-                            <Button variant="primary" onClick={() => nextPage(false)}>&nbsp;&lt;&lt;&nbsp;</Button>
+                            <Button size="sm" variant="primary" onClick={() => nextPage(false)}>&nbsp;&lt;&lt;&nbsp;</Button>
                         }
                     </Col>
-                    <Col xs={2} >
-                        <Button variant="primary" onClick={() => nextPage(true)}>&nbsp;&gt;&gt;&nbsp;</Button>
+                    <Col xs={1} className="p-0" >
+                        <Button size="sm" variant="primary" onClick={() => nextPage(true)}>&nbsp;&gt;&gt;&nbsp;</Button>
                     </Col>
-                    <Col className="d-flex justify-content-end align-items-center">
+                    <Col  className="p-0 d-flex justify-content-end align-items-center">
                         <Button variant="outline-primary" onClick={() => newFileModal.current.showMe()}>Upload</Button>
+                    </Col>
+                    <Col  className="p-0 d-flex justify-content-end align-items-center">
+                        <Button onClick={() => navigate("/user/filehandler")}>handler</Button>
                     </Col>
                 </Row>
             </Container>

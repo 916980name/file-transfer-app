@@ -6,3 +6,7 @@
     border-radius: 5px;
     border-width: 1px;
 }
+
+.p-0 {
+    padding: 0px;
+}

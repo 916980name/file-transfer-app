@@ -9,6 +9,7 @@ import { PRIVILEGE_ADMIN, PRIVILEGE_USER } from '../app/privileges';
 // import HomeUserPage from '../page/user/HomeUserPage';
 // import UserFilePage from '../page/user/UserFilePage';
 // import UserMessagePage from '../page/user/UserMessagePage';
+import FileHandlerUploadPage from '../page/user/FileHandlerUploadPage';
 import { ProtectedLayout } from './ProtectedLayout';
 //import ErrorPage from "./error-page";
 const ErrorPage = lazy(() => import('./error-page'));
@@ -61,7 +62,7 @@ export const routerList = [
             {
                 path: ':linkKey',
                 name: 'check login link',
-                element: <ShareLoginPage/>
+                element: <ShareLoginPage />
             }
         ]
     },
@@ -72,7 +73,7 @@ export const routerList = [
             {
                 path: ':linkKey',
                 name: 'share message link',
-                element: <ShareMessagePage/>
+                element: <ShareMessagePage />
             }
         ]
     },
@@ -83,7 +84,7 @@ export const routerList = [
             {
                 path: ':linkKey',
                 name: 'share message link',
-                element: <ShareFilePage/>
+                element: <ShareFilePage />
             }
         ]
     },
@@ -101,12 +102,17 @@ export const routerList = [
             {
                 path: 'message',
                 name: 'user messages',
-                element: <UserMessagePage/>
+                element: <UserMessagePage />
             },
             {
                 path: 'file',
                 name: 'user files',
-                element: <UserFilePage/>
+                element: <UserFilePage />,
+            },
+            {
+                path: 'filehandler',
+                name: 'pwa file handler',
+                element: <FileHandlerUploadPage />,
             },
         ]
     },

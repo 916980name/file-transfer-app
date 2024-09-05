@@ -25,13 +25,18 @@ export default function LoginPage() {
     const formRef = useRef();
     const [loading, setLoading] = useState(false);
 
+    function clearHistoryStack() {
+        const { pathname } = window.location;
+        window.history.replaceState(null, '', pathname);
+    }
+
     useEffect(() => {
         if (isLogin) {
             console.log('has login')
             if (hadPrivileges.includes(PRIVILEGE_ADMIN)) {
-                navigate("/admin")
+                navigate("/admin", { replace: true })
             } else if (hadPrivileges.includes(PRIVILEGE_USER)) {
-                navigate("/user")
+                navigate("/user", { replace: true })
             } else {
                 navigate("/")
             }
@@ -69,7 +74,7 @@ export default function LoginPage() {
             let data = ''
             try {
                 data = err.message || "Failed";
-            }  finally {
+            } finally {
                 dispatch(sendAlert({ code: ALERTCODE_ERR, msg: data }))
             }
         }).finally(() => {
@@ -105,7 +110,7 @@ export default function LoginPage() {
                                             <span className="visually-hidden">Loading...</span>
                                         </Spinner>
                                     }
-                                    {!loading && 'Login' }
+                                    {!loading && 'Login'}
                                 </Button>
                             </Row>
                         </Form>

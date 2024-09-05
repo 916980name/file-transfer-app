@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { deleteMessage, getMessageByPage } from "../../api/userApi";
 import { dispatchAlertError } from "../../app/godispatch";
 import { makeid } from "../../app/utils";
@@ -14,6 +15,7 @@ import './UserMessagePage.css';
 
 export default function UserMessagePage() {
     document.title = "user messages"
+    const navigate = useNavigate();
     const [searchParam, setSearchParam] = useState({
         pageNum: 1,
         pageSize: 10
@@ -93,7 +95,10 @@ export default function UserMessagePage() {
         <UserLayout>
             <Container style={{ marginBottom: '1em', borderBottom: '1px solid' }}>
                 <Row>
-                    <Col xs={4} >
+                    <Col xs={2} className="p-0 d-flex justify-content-end align-items-center">
+                        <Button onClick={() => navigate("/user")}>Home</Button>
+                    </Col>
+                    <Col xs={2} >
                         Page No. {currentSearchParam.pageNum}
                     </Col>
                     <Col xs={2} >
