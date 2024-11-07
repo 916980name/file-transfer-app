@@ -109,8 +109,17 @@ const deleteFile = (id) => {
   })
 }
 
+const cloudinaryUploadFile = (formData, onUploadProgress) => {
+  return request({
+    method: 'POST',
+    url: '/cloudinary',
+    data: formData,
+    onUploadProgress: onUploadProgress,
+  })
+}
+
 export {
-  LoginRequest, LogoutRequest, deleteFile, deleteMessage, downloadFile, getFileByPage, getMessageByPage,
+  LoginRequest, LogoutRequest, cloudinaryUploadFile, deleteFile, deleteMessage, downloadFile, getFileByPage, getMessageByPage,
   getUser, putMessage, shareFileLink, shareLoginLink, shareMessageLink, updatePassword,
   uploadFile
 };

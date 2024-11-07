@@ -9,6 +9,7 @@ import { PRIVILEGE_ADMIN, PRIVILEGE_USER } from '../app/privileges';
 // import HomeUserPage from '../page/user/HomeUserPage';
 // import UserFilePage from '../page/user/UserFilePage';
 // import UserMessagePage from '../page/user/UserMessagePage';
+import CloudinaryUploadPage from '../page/user/CloudinaryUploadPage';
 import FileHandlerUploadPage from '../page/user/FileHandlerUploadPage';
 import { ProtectedLayout } from './ProtectedLayout';
 //import ErrorPage from "./error-page";
@@ -113,6 +114,11 @@ export const routerList = [
                 path: 'filehandler',
                 name: 'pwa file handler',
                 element: <FileHandlerUploadPage />,
+            },
+            {
+                path: 'cloudinary',
+                name: 'cl',
+                element: <CloudinaryUploadPage/>,
             },
         ]
     },

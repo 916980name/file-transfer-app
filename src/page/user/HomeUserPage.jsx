@@ -54,6 +54,9 @@ export default function HomeUser() {
     const goMyFile = () => {
         navigate('/user/file')
     }
+    const goCloudinary = () => {
+        navigate('/user/cloudinary')
+    }
 
     const goShareLogin = () => {
         if (loading) return
@@ -123,6 +126,14 @@ export default function HomeUser() {
                             <Row className="userOptText userOptItem" onClick={goMyFile}>
                                 <Col xs={1}></Col>
                                 <Col>file</Col>
+                                <Col className="d-flex justify-content-end align-items-center">
+                                    <img className="imageArrow" src='/public-static/icons8-arrow-right.png' alt=""></img>
+                                </Col>
+                            </Row>
+                            <Row className="userOptItemDivider"></Row>
+                            <Row className="userOptText userOptItem" onClick={goCloudinary}>
+                                <Col xs={1}></Col>
+                                <Col>cloudinary</Col>
                                 <Col className="d-flex justify-content-end align-items-center">
                                     <img className="imageArrow" src='/public-static/icons8-arrow-right.png' alt=""></img>
                                 </Col>
