@@ -12,6 +12,7 @@ function CloudinaryUploadPage(props) {
     const [resData, setResData] = useState(null);
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
+    const [source, setSource] = useState("");
 
     function cancel() {
         if (loading) {
@@ -31,6 +32,7 @@ function CloudinaryUploadPage(props) {
         form.append('file', document.querySelector('#formFile').files[0])
         form.append('title', title)
         form.append('desc', desc)
+        form.append('source', source)
 
         // abortController = new AbortController();
 
@@ -92,14 +94,26 @@ function CloudinaryUploadPage(props) {
                         </Row>
                         <Row>
                             <Col>
+                                <Form.Group>
+                                    <Form.Label>Source link</Form.Label>
+                                    <Form.Control as="textarea" rows={1}
+                                        onChange={e => setSource(e.target.value)}
+                                        value={source} />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
                                 <ProgressBar percent={percent} />
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <pre className="msgDetail">
-                                    {resData}
-                                </pre>
+                                <Container>
+                                    <pre className="msgDetail">
+                                        {resData}
+                                    </pre>
+                                </Container>
                             </Col>
                         </Row>
                     </Form>
